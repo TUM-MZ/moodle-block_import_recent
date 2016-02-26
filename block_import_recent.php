@@ -47,7 +47,6 @@ class block_import_recent extends block_base {
     function get_content() {
         global $CFG, $DB, $USER, $COURSE;
 
-        print_r($USER->id);
 
         $teacher_role = 3;  // TODO: make it a setting
 
@@ -55,7 +54,6 @@ class block_import_recent extends block_base {
             FROM mdl_role_assignments ra, mdl_context ct, mdl_course c, mdl_role r
             WHERE ra.contextid = ct.id AND ct.instanceid = c.id
             AND r.id = ra.roleid AND ra.userid=? AND r.id = ? ORDER BY c.startdate DESC", array($USER->id, $teacher_role));
-        print_r($courses);
         $text = '';
 
         if ($this->content !== NULL) {

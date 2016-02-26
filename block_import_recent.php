@@ -37,7 +37,7 @@ class block_import_recent extends block_base {
     }
 
     function specialization() {
-        $this->title = isset($this->config->title) ? format_string($this->config->title) : format_string(get_string('newimportblock', 'block_import_recent'));
+        $this->title = format_string(get_string('importblocktitle', 'block_import_recent'));
     }
 
     function instance_allow_multiple() {

@@ -25,8 +25,13 @@
 defined('MOODLE_INTERNAL') || die;
 
 if ($ADMIN->fulltree) {
-    $settings->add(new admin_setting_configcheckbox('block_html_allowcssclasses', get_string('allowadditionalcssclasses', 'block_html'),
-                       get_string('configallowadditionalcssclasses', 'block_html'), 0));
-}
+    $roles = $DB->get_records('role');
+    $role_fields = array();
+    foreach ($roles as $role) {
 
+        $role_fields[$role->id] = $role->name ? $role->name : $role->shortname;
+    }
+    $settings->add(new admin_setting_configselect('block_import_recent/teacher_roleid', get_string('teacher_roleid', 'block_import_recent'),
+                                                  get_string('teacher_roleid_desc', 'block_import_recent'), reset($role_fields), $role_fields));
+}
 

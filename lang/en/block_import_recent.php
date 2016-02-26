@@ -33,3 +33,5 @@ $string['import_recent:myaddinstance'] = 'Add a new HTML block to Dashboard';
 $string['leaveblanktohide'] = 'leave blank to hide the title';
 $string['newimportblock'] = '(new Import Recent block)';
 $string['pluginname'] = 'Import Recent';
+$string['teacher_roleid'] = 'Teacher role';
+$string['teacher_roleid_desc'] = 'The role which is assigned to the teachers in this moodle installation';

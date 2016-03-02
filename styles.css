@@ -1,7 +1,7 @@
 .block_import_recent #import_from_list {
   margin: 5px 10px 10px 0;
   margin-bottom: 10px;
-
+  width: 100%;
 }
 
 .block_import_recent label[for="import_from_list"] {
@@ -11,5 +11,5 @@
 .block_import_recent input[type="submit"] {
   display: block;
   margin: 0;
-  width: auto;
+  width: auto !important;
 }

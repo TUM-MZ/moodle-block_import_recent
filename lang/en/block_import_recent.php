@@ -35,4 +35,4 @@ $string['importblocktitle'] = 'Import A Recent Course';
 $string['pluginname'] = 'Import Recent';
 $string['teacher_roleid'] = 'Teacher role';
 $string['teacher_roleid_desc'] = 'The role which is assigned to the teachers in this moodle installation';
-$string['import_course_from'] = 'Import course from';
+$string['import_course_from'] = 'Import course materials from';

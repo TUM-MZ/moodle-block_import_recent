@@ -31,7 +31,6 @@ if ($ADMIN->fulltree) {
 
         $role_fields[$role->id] = $role->name ? $role->name : $role->shortname;
     }
-    $settings->add(new admin_setting_configselect('block_import_recent/teacher_roleid', get_string('teacher_roleid', 'block_import_recent'),
+    $settings->add(new admin_setting_configmulticheckbox('block_import_recent/teacher_roleid', get_string('teacher_roleid', 'block_import_recent'),
                                                   get_string('teacher_roleid_desc', 'block_import_recent'), reset($role_fields), $role_fields));
 }
-

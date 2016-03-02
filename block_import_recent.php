@@ -47,7 +47,10 @@ class block_import_recent extends block_base {
     function get_content() {
         global $CFG, $DB, $USER, $COURSE;
 
-
+        $context = context_course::instance($COURSE->id);
+        if (!has_capability('moodle/course:manageactivities', $context)) {
+          return;
+        }
         $teacher_role = get_config('block_import_recent', 'teacher_roleid');
 
         $courses = $DB->get_records_sql("SELECT c.id,c.fullname
@@ -71,10 +74,14 @@ class block_import_recent extends block_base {
         $this->content->footer = '';
         $text .= '<form method="post" action="'.$CFG->wwwroot.'/backup/import.php">';
         $text .= '<div>';
-        $text .= '<select name="importid">';
+        $text .= '<label for="import_from_list">';
+        $text .= get_string('import_course_from', 'block_import_recent').':</label>';
+        $text .= '<select id="import_from_list" name="importid">';
         foreach ($courses as $course) {
             if ($course->id !== $COURSE->id) {
-                $text .= '<option value="'.$course->id.'">'.$course->fullname.'</option>';
+                $text .= '<option value="'.$course->id.'"';
+                $text .= 'title="'.$course->fullname.' - '.$course->shortname.'">';
+                $text .= $course->fullname.'</option>';
             }
         }
 

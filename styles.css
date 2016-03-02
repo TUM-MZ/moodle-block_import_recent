@@ -1,0 +1,14 @@
+.block_import_recent #import_from_list {
+  margin: 5px 0 10px 0;
+  margin-bottom: 10px;
+
+}
+
+.block_import_recent label[for="import_from_list"] {
+  display: block;
+}
+
+.block_import_recent input[type="submit"] {
+  display: block;
+  margin: 0;
+}

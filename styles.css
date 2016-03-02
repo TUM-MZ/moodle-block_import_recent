@@ -11,4 +11,5 @@
 .block_import_recent input[type="submit"] {
   display: block;
   margin: 0;
+  width: auto;
 }

@@ -51,27 +51,28 @@ class block_import_recent extends block_base {
         if (!has_capability('moodle/course:manageactivities', $context)) {
           return;
         }
+
+        if ($this->content !== NULL) {
+            return $this->content;
+        }
+
         $teacher_role = get_config('block_import_recent', 'teacher_roleid');
 
         $sql_string = "SELECT DISTINCT c.id,c.fullname,c.shortname, c.startdate
             FROM {role_assignments} ra, {context} ct, {course} c, {role} r
             WHERE ra.contextid = ct.id AND ct.instanceid = c.id
-            AND r.id = ra.roleid AND ra.userid=? AND (";
+            AND r.id = ra.roleid AND ra.userid=? AND c.id != ? AND (";
         $role_selector_array = array();
         $role_selector_vals = array();
         foreach (explode(',', $teacher_role) as $roleid) {
-            array_push($role_selector_array, 'ra.userid = ?');
+            array_push($role_selector_array, 'ra.roleid = ?');
             array_push($role_selector_vals, $roleid);
         }
         $sql_string .= implode(' OR ', $role_selector_array);
         $sql_string .= ") ORDER BY c.startdate DESC";
         $courses = $DB->get_records_sql($sql_string,
-            array_merge(array($USER->id), $role_selector_vals));
+            array_merge(array($USER->id, $COURSE->id), $role_selector_vals));
         $text = '';
-
-        if ($this->content !== NULL) {
-            return $this->content;
-        }
 
         $filteropt = new stdClass;
         $filteropt->overflowdiv = true;

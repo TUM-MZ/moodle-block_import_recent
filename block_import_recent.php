@@ -53,7 +53,7 @@ class block_import_recent extends block_base {
         }
         $teacher_role = get_config('block_import_recent', 'teacher_roleid');
 
-        $courses = $DB->get_records_sql("SELECT c.id,c.fullname
+        $courses = $DB->get_records_sql("SELECT c.id,c.fullname,c.shortname
             FROM {role_assignments} ra, {context} ct, {course} c, {role} r
             WHERE ra.contextid = ct.id AND ct.instanceid = c.id
             AND r.id = ra.roleid AND ra.userid=? AND r.id = ? ORDER BY c.startdate DESC", array($USER->id, $teacher_role));
